@@ -11,8 +11,6 @@ class JsonPropertyInConstructorVO {
     private Optional<Boolean> option;
 
     public JsonPropertyInConstructorVO() {}
-
-
     public JsonPropertyInConstructorVO(@JsonProperty("option") Optional<Boolean> option) {
         this.option = option;
     }
@@ -24,14 +22,10 @@ public class JsonPropertyInConstructor {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new Jdk8Module());
 
-        String json = mapper.writerWithDefaultPrettyPrinter()
-                .writeValueAsString(new JsonPropertyInConstructorVO(Optional.empty()));
+        String json = mapper.writeValueAsString(new JsonPropertyInConstructorVO(Optional.empty()));
         System.out.println(json);
 
-        JsonPropertyInConstructorVO result = mapper.readValue(json, JsonPropertyInConstructorVO.class);
-        System.out.println(result);
-
-        JsonPropertyInConstructorVO resultFromRaw = mapper.readValue("{\"optional\": null}", JsonPropertyInConstructorVO.class);
-        System.out.println(resultFromRaw);
+        JsonPropertyInConstructorVO resultRaw = mapper.readValue("{\"option\":null}", JsonPropertyInConstructorVO.class);
+        System.out.println(resultRaw);
     }
 }

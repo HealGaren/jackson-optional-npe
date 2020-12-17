@@ -9,9 +9,10 @@ import java.util.Optional;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class OnlyMemberVO {
-    @JsonInclude(JsonInclude.Include.NON_ABSENT)
+//    Include 옵션 넣든 안 넣든 null value deserialize에서는 에러 발생
+//    @JsonInclude(JsonInclude.Include.NON_ABSENT)
     @JsonProperty
-    private Optional<Boolean> option = Optional.empty();
+    private Optional<Boolean> option;
 }
 
 public class OnlyMember {
@@ -27,7 +28,7 @@ public class OnlyMember {
         OnlyMemberVO result = mapper.readValue(json, OnlyMemberVO.class);
         System.out.println(result);
 
-        OnlyMemberVO resultFromRaw = mapper.readValue("{\"optional\": null}", OnlyMemberVO.class);
-        System.out.println(resultFromRaw);
+        OnlyMember resultRaw = mapper.readValue("{\"option\":null}", OnlyMember.class);
+        System.out.println(resultRaw);
     }
 }

@@ -9,17 +9,19 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
-            <version>2.10.2</version>
-        </dependency>
-
-        <!-- 아래 라이브러리를 빼거나 2.10버전으로 올리면 정상 동작합니다.-->
+        
+        <!-- 아래 joda라이브러리를 빼거나, 위-아래 순서를 바꾸거나, 2.10버전으로 올리면 정상 동작합니다.-->
+        <!-- 현재 구성에서는 두 버전이 충돌하여 jackson core 2.9.7을 사용하도록 처리됩니다.-->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
             <version>2.9.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jdk8</artifactId>
+            <version>2.10.2</version>
         </dependency>
 
     </dependencies>
