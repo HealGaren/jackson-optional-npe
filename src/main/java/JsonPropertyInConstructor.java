@@ -30,5 +30,8 @@ public class JsonPropertyInConstructor {
 
         JsonPropertyInConstructorVO result = mapper.readValue(json, JsonPropertyInConstructorVO.class);
         System.out.println(result);
+
+        JsonPropertyInConstructorVO resultFromRaw = mapper.readValue("{\"optional\": null}", JsonPropertyInConstructorVO.class);
+        System.out.println(resultFromRaw);
     }
 }
